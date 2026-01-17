@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bipsa Shakya - Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Messages Display -->
+    {% if messages %}
+    <div class="messages" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" style="padding: 15px; margin-bottom: 10px; border-radius: 5px; background-color: {% if message.tags == 'success' %}#4CAF50{% elif message.tags == 'error' %}#f44336{% else %}#2196F3{% endif %}; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); min-width: 300px;">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- navbar section -->
+    <nav id="navbar" class="flex s-around bg-color">
+        <div class="left-nav">
+            <h2 class="t-white">My Portfolio</h2>
+        </div>
+        <div class="right-nav">
+            <ul>
+                <li><a href="#home" class="t-white roboto">Home<i class="fa-solid fa-house"></i></a></li>
+                <li><a href="#about" class="t-white roboto">About Me<i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#skills" class="t-white roboto">Skills<i class="fa-solid fa-code"></i></a></li>
+                <li><a href="#Contact" class="t-white roboto">Contact Me<i class="fa-solid fa-rocket"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- home section -->
+    <section id="home" class="flex s-around sw-80 m-auto">
+        <div class="home-left flex items-center">
+            <div class="home-content">
+                <h6 class="poppins">Hello, I'm</h6>
+                <h1 class="t-white">Bipsa Shakya</h1>
+                <h4 class="poppins">Bsc.CSIT Student.</h4>
+            </div>
+        </div>
+        <div class="home-right flex s-center items-center">
+            <div class="circle flex s-center items-center" id="mainImage">
+                <img src="{% static 'images/image.png' %}" alt="profile image">
+            </div>
+        </div>
+    </section>
+
+    <!--about section-->
+    <section id="about">
+        <h1 class="t-center my-2 f-2">About Me</h1>
+        <div class="flex s-around items-center about-section">
+            <div class="about-left">
+                <div class="about-content">
+                    <h1 class="m-b-1">Bipsa Shakya</h1>
+                    <p>I am a Bsc CSIT student with a passionate interest in web development and programming.I have experience in creating responsive and user-friendly websites using HTML, CSS, Python and JavaScript. As a student , I am constantly learning and improving my skills. My goal is to become a skilled full-stack developer and contribute to meaningful projects that solve real problems while continuing to learn and improve every day.</p>
+                </div>
+            </div>
+            <div class="about-right flex s-center items-center">
+                <img src="{% static 'images/cool in a hole.png' %}" alt="about image">
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <h1 class="t-center my-2 f-2">Skills</h1>
+        <div class="skills-wrapper">
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-label">
+                        <span>HTML</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="html"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-label">
+                        <span>CSS</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="css"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-label">
+                        <span>JavaScript</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="javascript"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-label">
+                        <span>Python</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="python"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-label">
+                        <span>SQL</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="bar">
+                        <div class="sql"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--contact section-->
+    <section id="Contact" class="m-b-1">
+        <h1 class="t-center my-2 t-white f-2">Contact Me</h1>
+        <div class="contact-container flex s-around items-center">
+            <div class="form" id="contact-form">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="name form-div">
+                        <input type="text" name="name" id="name" class="popinss" placeholder="Your Name" required>
+                    </div>
+
+                     <div class="email form-div">
+                        <input type="email" name="email" id="email" class="popinss" placeholder="Your Email" required>
+                    </div>
+
+
+                     <div class="phone form-div">
+                        <input type="text" name="phone" id="phone" class="popinss" placeholder="Enter your phone number" required>
+                    </div>
+
+                     <div class="textarea form-div">
+                        <textarea name="message" id="textarea"  cols="30" rows="10"class="popinss" placeholder="Enter your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn poppins" id="submit">Send</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section-->
+    <footer id="footer">
+        {% comment %} <ul class="flex s-center items-center">
+            <li><a href="#home" class="poppins">Home</a></li>
+            <li><a href="#about" class="poppins">About Me</a></li>
+            <li><a href="#skills" class="poppins">Skills</a></li>
+            <li><a href="#Contact" class="poppins">Contact Me</a></li>
+        </ul> {% endcomment %}
+        <ul class="flex s-center w-80 font-awesome">
+            <li><a href="https://www.linkedin.com/in/bipsa-shakya-125114353/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+            <li><a href="https://github.com/bipsashakya" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li><a href="https://www.instagram.com/bipsa_s/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>        
+        <p class="t-white my-2 popinss">&copy; ALL Rights Reserved - Bipsa Shakya</p>
+    </footer>
+
+    <script>
+        // Auto-hide messages after 5 seconds
+        setTimeout(function() {
+            const messages = document.querySelector('.messages');
+            if (messages) {
+                messages.style.transition = 'opacity 0.5s';
+                messages.style.opacity = '0';
+                setTimeout(function() {
+                    messages.remove();
+                }, 500);
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
